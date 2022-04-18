@@ -16,19 +16,19 @@ This project runs on html, css, [p.5.js](https://p5js.org/), and uses the [p5.pl
 
 ## Timeline ##
 > Coding Overall Functionality
-  * Title Screen:
-  - Title
-  - Start button (randomize a maze layout)
-  * Game Screen:
-  - WASD/Arrow movement
-  - Ghost figure follows the player as they try to escape the maze
-  - Pause button
-  - Stop button
-  - Name of game on top of screen
-  - Timer to show how long it took to finish the maze
-  - Three lives (maybe - to resurrect at the same spot the player gets caught)
-  * End Game Screen:
-  - Try Again button (randomize a new maze layout)
+  - Title Screen:
+    - Title
+    - Start button (randomize a maze layout)
+  - Game Screen:
+    -  WASD/Arrow movement
+    - Ghost figure follows the player as they try to escape the maze
+    - Pause button
+    - Stop button
+    - Name of game on top of screen
+    - Timer to show how long it took to finish the maze
+    - Three lives (maybe - to resurrect at the same spot the player gets caught)
+  - End Game Screen:
+    - Try Again button (randomize a new maze layout)
 > Making & Implementing Assets/Art
   - Adding in animated figures/characters
     - Ghost (white)
