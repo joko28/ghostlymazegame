@@ -10,10 +10,10 @@ This project is
 This project runs on html, css, [p.5.js](https://p5js.org/), and uses the [p5.play](http://molleindustria.github.io/p5.play/) library.
 
 ## Timeline ##
-> Coding Overall Functionality
-> Making & Implementing Assets/Art
-> Debugging & Testing Software
-> Additional Features & Finishing Touches
+> Coding Overall Functionality <
+> Making & Implementing Assets/Art <
+> Debugging & Testing Software <
+> Additional Features & Finishing Touches <
 
 
 #### Credits ####
