@@ -16,10 +16,11 @@ This project runs on html, css, [p.5.js](https://p5js.org/), and uses the [p5.pl
 >
 > Debugging & Testing Software
 >
-> Additional Features & Finishing Touches 
+> Additional Features & Finishing Touches
 
 
 #### Credits ####
 
 Created by Jozey Nguyen
+
 More about her work can be found on her [website](https://joko28.github.io/portfolio/index.html).
