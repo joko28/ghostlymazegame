@@ -10,6 +10,8 @@ html, body {
 
 canvas {
   display: block;
+  margin: auto;
+  padding: 50px;
 }
 
 #myCanvas canvas {
@@ -24,4 +26,15 @@ h1 {
   color: Black;
   padding: 10px;
   padding-left:0;
+}
+
+h2 {
+  text-align: CENTER;
+}
+
+h4 {
+  text-align: LEFT;
+  padding: 0;
+  margin: 50px;
+
 }

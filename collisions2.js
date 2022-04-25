@@ -4,29 +4,30 @@
 
 var obstacles;
 var collectibles;
-var asterisk;
+var monster;
 
 function setup() {
-  createCanvas(800, 400);
+  //createCanvas(1000, 600);
+  createCanvas(windowWidth, windowHeight);
 
   //create a user controlled sprite
-  asterisk = createSprite(400, 200);
-  asterisk.addAnimation('normal', 'assets/asterisk_normal0001.png', 'assets/asterisk_normal0003.png');
+  monster = createSprite(400, 200);
+  monster.addAnimation('normal', 'assets/monster.png');
 
-  asterisk.addAnimation('stretch', 'assets/monster.png');
+  //asterisk.addAnimation('stretch', 'assets/monster.png');
 
   //create 2 groups
   obstacles = new Group();
   collectibles = new Group();
 
-  for(var i=0; i<8; i++)
+  for(var i=0; i<15; i++)
   {
     var box = createSprite(random(0, width), random(6, height));
-    box.addAnimation('normal', 'assets/box0001.png', 'assets/box0003.png');
+    box.addAnimation('normal', 'assets/bubbly0001.png', 'assets/bubbly0004.png');
     obstacles.add(box);
   }
 
-  for(var j=0; j<10; j++)
+  for(var j=0; j<50; j++)
   {
     var dot = createSprite(random(0, width), random(0, height));
     dot.addAnimation('normal', 'assets/small_circle0001.png', 'assets/small_circle0001.png');
@@ -38,26 +39,27 @@ function setup() {
 
 
 function draw() {
-  background(255, 255, 255);
+  background(229, 204, 255);
 
   //if no arrow input set velocity to 0
-  asterisk.velocity.x = (mouseX-asterisk.position.x)/10;
-  asterisk.velocity.y = (mouseY-asterisk.position.y)/10;
+  monster.velocity.x = (mouseX-monster.position.x)/10;
+  monster.velocity.y = (mouseY-monster.position.y)/10;
 
   //asterisk collides against all the sprites in the group obstacles
-  asterisk.collide(obstacles);
+  monster.collide(obstacles);
 
   //I can define a function to be called upon collision, overlap, displace or bounce
   //see collect() below
-  asterisk.overlap(collectibles, collect);
+  monster.overlap(collectibles, collect);
 
   //if the animation is "stretch" and it reached its last frame
-  if(asterisk.getAnimationLabel() == 'stretch' && asterisk.animation.getFrame() == asterisk.animation.getLastFrame())
+  if(monster.getAnimationLabel() == 'stretch' && monster.animation.getFrame() == monster.animation.getLastFrame())
   {
-    asterisk.changeAnimation('normal');
+    monster.changeAnimation('normal');
   }
 
   drawSprites();
+
 }
 
 //the first parameter will be the sprite (individual or from a group)
@@ -73,4 +75,8 @@ function collect(collector, collected)
   //collected is the sprite in the group collectibles that triggered
   //the event
   collected.remove();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
