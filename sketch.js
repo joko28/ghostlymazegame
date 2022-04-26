@@ -14,6 +14,10 @@
   // final time
   // win/lose screens??
 
+  //defined for player movement
+let x = 100;
+let y = 100;
+
 let canvas;
 let gameState = "title";
 
@@ -144,7 +148,7 @@ function gameScreen() {
 
      //exit
    fill(255, 0, 0);
-   rect(580, 450, 30, 30);
+   rect(580, 440, 30, 40);
 
      //ghost
    fill(255);
@@ -154,23 +158,23 @@ function gameScreen() {
 //**PLAYER MOVEMENT
 function player() {
   if (keyIsDown(LEFT_ARROW)) {
-    x -= 5;
+    x -= 4;
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
-    x += 5;
+    x += 4;
   }
 
   if (keyIsDown(UP_ARROW)) {
-    y -= 5;
+    y -= 4;
   }
 
   if (keyIsDown(DOWN_ARROW)) {
-    y += 5;
+    y += 4;
   }
 
-  fill(0);
-  ellipse(x, y, 40, 40);
+  fill(0, 255, 0);
+  ellipse(x, y, 30);
 }
 
 //**TIMER/ SCORE
