@@ -39,104 +39,10 @@ function setup() {
   textFont(myFont);
   frameRate(60);
 
-
-}
-
-function draw() {
-  //**SWITCH BTWN SCREENS 'DEFINED'
-  switch (gameState) {
-    case "title":
-      titleScreen();
-      break;
-    case "info":
-      infoScreen();
-      break;
-    case "game":
-      gameScreen();
-      playerMovement();
-      break;
-    case "gameover":
-      gameOver();
-      break;
-  }
-}
-
-//**KEY PRESSED FUNCTIONS
-function keyPressed() {
-  if (keyCode === ENTER) {
-    if (gameState === "title") {
-    gameState = "info";
-    } else if (gameState === "info" || gameState === "gameover") {
-      //insert timer start here
-      timeStart();
-      gameState = "game";
-    }
-  }
-   if (gameState === "game") {
-    if (key === "s" || key === "S") {
-      saveCanvas();
-    } else if (gameState === "game") {
-      if (key === "x" || key === "X") {
-        gameState = "gameover";
-      }
-    }
-  }
-}
-
-//**FUNCTION FOR TIMER DURING GAMESCREEN
-function timeStart() {
-  startTime = frameCount;
-  timeFrame = startTime + timeInt;
-}
-
-//**FUNCTION FOR RENDERING THE TITLE SCREEN
-function titleScreen() {
-  background(25, 0, 51);
-  stroke(229, 204, 255);
-  fill(229, 204, 255);
-  textAlign(CENTER);
-  //textSize(40);
-  //text("GHOSTLY ESCAPE MAZE", width * 0.5, height * 0.33);
-  noStroke();
-  textSize(20);
-  text('Press "Enter" To Start Game', width * 0.5, height * 0.5);
-}
-
-//**FUNCTION FOR INFO SCREEN
-function infoScreen() {
-  background(25, 0, 51);
-  stroke(229, 204, 255);
-  fill(229, 204, 255);
-  textAlign(CENTER);
-  textSize(30);
-  textAlign(CENTER);
-  text("INFO ON HOW TO PLAY THE GAME", width * 0.5, height * 0.33);
-  textSize(20);
-  text('Press "Enter" To Start Game', width * 0.5, height * 0.46);
-  text('Press "S" to save the game', width * 0.5, height * 0.56);
-  text('Press "X" to end game', width * 0.5, height * 0.66);
-  text('Press "Enter" To Play Again', width * 0.5, height * 0.76);
-}
-
-//**FUNCTION FOR RENDERING THE MAIN GAME PLAY SCREEN
-function gameScreen() {
-    //text
-  background(25, 0, 51);
-  stroke(229, 204, 255);
-  fill(229, 204, 255);
-  textAlign(CENTER);
-  textSize(20);
-  text("Escape the ghost!", width * 0.5, height * 0.07);
-  //noStroke();
-  //textSize(15);
-  //text('Press "S" to save the game.', width * 0.5, height * 0.95);
-  //textSize(15);
-  //text('Press "X" to end game.', width * 0.5, height * 0.9);
-
   imageMode(CENTER);
   var img = loadImage('assets/small_circle0001.png');
    player1 = createSprite(x, y);
-   player1.addImage('assets/small_circle0001.png');
+   player1.addImage(img);
 
    walls = new Group();
 
@@ -256,10 +162,97 @@ function gameScreen() {
   wall[27].shapeColor = color(153, 51, 255);
   walls.add(wall[27]);
 
+}
+
+function draw() {
+  //**SWITCH BTWN SCREENS 'DEFINED'
+  switch (gameState) {
+    case "title":
+      titleScreen();
+      break;
+    case "info":
+      infoScreen();
+      break;
+    case "game":
+      gameScreen();
+      playerMovement();
+      break;
+    case "gameover":
+      gameOver();
+      break;
+  }
+}
+
+//**KEY PRESSED FUNCTIONS
+function keyPressed() {
+  if (keyCode === ENTER) {
+    if (gameState === "title") {
+    gameState = "info";
+    } else if (gameState === "info" || gameState === "gameover") {
+      //insert timer start here
+      timeStart();
+      gameState = "game";
+    }
+  }
+   if (gameState === "game") {
+    if (key === "s" || key === "S") {
+      saveCanvas();
+    } else if (gameState === "game") {
+      if (key === "x" || key === "X") {
+        gameState = "gameover";
+      }
+    }
+  }
+}
+
+//**FUNCTION FOR TIMER DURING GAMESCREEN
+function timeStart() {
+  startTime = frameCount;
+  timeFrame = startTime + timeInt;
+}
+
+//**FUNCTION FOR RENDERING THE TITLE SCREEN
+function titleScreen() {
+  background(25, 0, 51);
+  stroke(229, 204, 255);
+  fill(229, 204, 255);
+  textAlign(CENTER);
+  noStroke();
+  textSize(20);
+  text('Press "Enter" To Start Game', width * 0.5, height * 0.5);
+}
+
+//**FUNCTION FOR INFO SCREEN
+function infoScreen() {
+  background(25, 0, 51);
+  stroke(229, 204, 255);
+  fill(229, 204, 255);
+  textAlign(CENTER);
+  textSize(30);
+  textAlign(CENTER);
+  text("INFO ON HOW TO PLAY THE GAME", width * 0.5, height * 0.33);
+  textSize(20);
+  text('Press "Enter" To Start Game', width * 0.5, height * 0.46);
+  text('Press "S" to save the game', width * 0.5, height * 0.56);
+  text('Press "X" to end game', width * 0.5, height * 0.66);
+  text('Press "Enter" To Play Again', width * 0.5, height * 0.76);
+}
+
+//**FUNCTION FOR RENDERING THE MAIN GAME PLAY SCREEN
+function gameScreen() {
+    //text
+  background(25, 0, 51);
+  stroke(229, 204, 255);
+  fill(229, 204, 255);
+  textAlign(CENTER);
+  textSize(20);
+  text("Escape the ghost!", width * 0.5, height * 0.07);
+
+
   //exit
   fill(255, 0, 0);
   rect(580, 440, 30, 40);
-  gameState = 'gameover';
+  //gameState = 'gameover';
 
   //ghost
   fill(255);
@@ -270,6 +263,9 @@ function gameScreen() {
   player1.debug = mouseIsPressed;
 
   drawSprites();
+
+//win screen for exist
+
 
 //start timer
   if (frameCount > timeFrame) {
@@ -318,6 +314,4 @@ function gameOver() {
   textSize(20);
   text('Press "Enter" To Play Again', width * 0.5, height * 0.66);
   gameState = 'gameover';
-
-
 }
