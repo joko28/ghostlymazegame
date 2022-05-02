@@ -39,12 +39,7 @@ function setup() {
   textFont(myFont);
   frameRate(60);
 
-  imageMode(CENTER);
-  var img = loadImage('small_circle0001.png');
-  player1 = createSprite(x, y);
-  player1.addImage(img);
 
-  walls = new Group();
 }
 
 function draw() {
@@ -58,7 +53,7 @@ function draw() {
       break;
     case "game":
       gameScreen();
-      player();
+      playerMovement();
       break;
     case "gameover":
       gameOver();
@@ -113,7 +108,7 @@ function infoScreen() {
   stroke(229, 204, 255);
   fill(229, 204, 255);
   textAlign(CENTER);
-  textSize(40);
+  textSize(30);
   textAlign(CENTER);
   text("INFO ON HOW TO PLAY THE GAME", width * 0.5, height * 0.33);
   textSize(20);
@@ -138,6 +133,13 @@ function gameScreen() {
   //textSize(15);
   //text('Press "X" to end game.', width * 0.5, height * 0.9);
 
+  imageMode(CENTER);
+  var img = loadImage('small_circle0001.png');
+   player1 = createSprite(x, y);
+   player1.addImage('small_circle0001.png');
+
+   walls = new Group();
+   
   //border wall
   wall[0] = createSprite(300, 50, 600, 20); //top
   wall[0].shapeColor = color(153, 51, 255);
@@ -257,43 +259,50 @@ function gameScreen() {
   //exit
   fill(255, 0, 0);
   rect(580, 440, 30, 40);
+  gameState = 'gameover';
 
   //ghost
   fill(255);
   ellipse(45, 100, 30);
 
   player1.collide(walls);
-  player();
+  playerMovement();
   player1.debug = mouseIsPressed;
 
+  drawSprites();
+
+//start timer
   if (frameCount > timeFrame) {
   gameState = 'gameover';
 }
 
-  drawSprites();
-
 }
 
 //**PLAYER MOVEMENT
-function player() {
+function playerMovement() {
   player1.velocity.x = 0;
   player1.velocity.y = 0;
 
   if (keyIsDown(LEFT_ARROW)) {
-    x -= 4;
+    player1.velocity.x = -3;
+    //x -= 4;
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
-    x += 4;
+    player1.velocity.x = +3;
+    //x += 4;
   }
 
   if (keyIsDown(UP_ARROW)) {
-    y -= 4;
+    player1.velocity.y = -3;
+    //y -= 4;
   }
 
   if (keyIsDown(DOWN_ARROW)) {
-    y += 4;
+    player1.velocity.y = +3;
+    //y += 4;
   }
+
 }
 
 //**FUNCTION FOR RENDERING GAME OVER SCREEN
@@ -308,4 +317,7 @@ function gameOver() {
   noStroke();
   textSize(20);
   text('Press "Enter" To Play Again', width * 0.5, height * 0.66);
+  gameState = 'gameover';
+
+
 }
