@@ -134,12 +134,12 @@ function gameScreen() {
   //text('Press "X" to end game.', width * 0.5, height * 0.9);
 
   imageMode(CENTER);
-  var img = loadImage('small_circle0001.png');
+  var img = loadImage('assets/small_circle0001.png');
    player1 = createSprite(x, y);
-   player1.addImage('small_circle0001.png');
+   player1.addImage('assets/small_circle0001.png');
 
    walls = new Group();
-   
+
   //border wall
   wall[0] = createSprite(300, 50, 600, 20); //top
   wall[0].shapeColor = color(153, 51, 255);
