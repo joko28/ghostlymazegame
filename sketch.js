@@ -26,10 +26,11 @@ let gameState = "title";
 //timer
 let startTime;
 let timeFrame;
-let timeInt = 1000;
+let timeInt = 1050;
 //**PRELOAD FONTS/IMAGES
 function preload() {
   myFont = loadFont('assets/fonts/Monoton-Regular.ttf');
+  ghost = loadImage('assets/ghost.png');
 }
 
 function setup() {
@@ -40,9 +41,9 @@ function setup() {
   frameRate(60);
 
   imageMode(CENTER);
-  var img = loadImage('assets/small_circle0001.png');
+  var pimg = loadImage('assets/player.png');
    player1 = createSprite(x, y);
-   player1.addImage(img);
+   player1.addImage(pimg);
 
    walls = new Group();
 
@@ -55,7 +56,7 @@ function setup() {
   wall[1].shapeColor = color(153, 51, 255);
   walls.add(wall[1]);
 
-  wall[2] = createSprite(590, 240, 20, 400); //right
+  wall[2] = createSprite(590, 240, 20, 380); //right
   wall[2].shapeColor = color(153, 51, 255);
   walls.add(wall[2]);
 
@@ -246,18 +247,20 @@ function gameScreen() {
   fill(229, 204, 255);
   textAlign(CENTER);
   textSize(20);
-  text("Escape the ghost!", width * 0.5, height * 0.07);
-
+  text("Escape the ghost!", width * 0.5, height * 0.05);
 
   //exit
   fill(255, 0, 0);
-  rect(580, 440, 30, 40);
+  rect(580, 430, 30, 50);
+
   //gameState = 'gameover';
 
   //ghost
-  fill(255);
-  ellipse(45, 100, 30);
+  //fill(255);
+  //ellipse(45, 100, 30);
+  image(ghost, 45,100);
 
+//player movement collision debug
   player1.collide(walls);
   playerMovement();
   player1.debug = mouseIsPressed;
@@ -265,7 +268,12 @@ function gameScreen() {
   drawSprites();
 
 //win screen for exist
-
+//if (rect(580,440,30,40)) {
+  //gameState = 'gameover';
+//}
+if (dist(580, 430, 30, 50) < 1) {
+  gameState = "gameover";
+}
 
 //start timer
   if (frameCount > timeFrame) {
