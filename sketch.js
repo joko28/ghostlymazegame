@@ -271,8 +271,15 @@ function gameScreen() {
 //if (rect(580,440,30,40)) {
   //gameState = 'gameover';
 //}
-if (dist(580, 430, 30, 50) < 1) {
-  gameState = "gameover";
+//if (dist(580, 430, 30, 50) < 1) {
+//  gameState = "gameover";
+//}
+
+if (player1 > width * 0.9 && width * 1) {
+  if (player1 > height * 0.8 && height * 0.9)
+} else if {
+   gameState = "gameover";
+ }
 }
 
 //start timer
