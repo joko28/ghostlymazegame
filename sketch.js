@@ -42,10 +42,10 @@ function setup() {
 
   imageMode(CENTER);
   var pimg = loadImage('assets/player.png');
-   player1 = createSprite(x, y);
-   player1.addImage(pimg);
+  player1 = createSprite(x, y);
+  player1.addImage(pimg);
 
-   walls = new Group();
+  walls = new Group();
 
   //border wall
   wall[0] = createSprite(300, 50, 600, 20); //top
@@ -188,14 +188,14 @@ function draw() {
 function keyPressed() {
   if (keyCode === ENTER) {
     if (gameState === "title") {
-    gameState = "info";
+      gameState = "info";
     } else if (gameState === "info" || gameState === "gameover") {
       //insert timer start here
       timeStart();
       gameState = "game";
     }
   }
-   if (gameState === "game") {
+  if (gameState === "game") {
     if (key === "s" || key === "S") {
       saveCanvas();
     } else if (gameState === "game") {
@@ -241,7 +241,7 @@ function infoScreen() {
 
 //**FUNCTION FOR RENDERING THE MAIN GAME PLAY SCREEN
 function gameScreen() {
-    //text
+  //text
   background(25, 0, 51);
   stroke(229, 204, 255);
   fill(229, 204, 255);
@@ -258,35 +258,29 @@ function gameScreen() {
   //ghost
   //fill(255);
   //ellipse(45, 100, 30);
-  image(ghost, 45,100);
+  image(ghost, 45, 100);
 
-//player movement collision debug
+  //player movement collision debug
   player1.collide(walls);
   playerMovement();
   player1.debug = mouseIsPressed;
 
   drawSprites();
 
-//win screen for exist
-//if (rect(580,440,30,40)) {
-  //gameState = 'gameover';
-//}
-//if (dist(580, 430, 30, 50) < 1) {
-//  gameState = "gameover";
-//}
+  //win screen for exit
+  if (player1.position.x > 580) {
+    if (player1.position.y > 430) {
+      gameState = 'gameover';
+      console.log('you win');
+      //this.xpos = width / 2;
+      //this.ypos = height / 2;
+    }
+  }
 
-if (player1 > width * 0.9 && width * 1) {
-  if (player1 > height * 0.8 && height * 0.9)
-} else if {
-   gameState = "gameover";
- }
-}
-
-//start timer
+  //start timer
   if (frameCount > timeFrame) {
-  gameState = 'gameover';
-}
-
+    gameState = 'gameover';
+  }
 }
 
 //**PLAYER MOVEMENT
